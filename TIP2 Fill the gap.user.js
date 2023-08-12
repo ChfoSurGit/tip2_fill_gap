@@ -14,12 +14,10 @@
 
 (function() {
     'use strict';
-    console.log('yes');
     waitForKeyElements("tip2-tour-zug-block-row-template", addGap);
 })();
 
 function addGap() {
-    console.log('no');
     var hours = document.getElementsByClassName('tip2-font-bold p-0');
     var start_hour_txt = hours[0].innerText;
     var start_hour = new Date('2023-01-01 '+start_hour_txt);
