@@ -27,6 +27,20 @@
 })();
 
 function addGap() {
+    var lang = document.querySelector('tip2-go-back').innerText;
+    var text;
+    // Doesn't work if the language is changed without any refresh
+    switch (lang) {
+        case "Zurück zum Briefing":
+            text = "Leerzeit";
+            break;
+        case "Retour au briefing":
+            text = "Temps libre";
+            break;
+        case "Tornare al briefing":
+            text = "Tempo di inattività";
+            break;
+    }
     var hours = document.getElementsByClassName('tip2-font-bold p-0');
     var start_hour_txt = hours[0].innerText;
     var start_hour = new Date('2023-01-01 '+start_hour_txt);
@@ -78,7 +92,7 @@ function addGap() {
             spans[0].innerText = hour+':'+minutes;
             var new_time = (hour2-hour1)/60000;
             spans[1].innerText = new_time+"'";
-            spans[2].innerText = 'Leerzeit';
+            spans[2].innerText = text;
             // remove (LF);
             spans[3].remove();
             var pos = hours[a].closest('tip2-tour-zug-block-leistung');
