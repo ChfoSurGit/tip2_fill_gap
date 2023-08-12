@@ -12,6 +12,15 @@
 // @grant        GM_addStyle
 // ==/UserScript==
 
+(function(open) {
+    XMLHttpRequest.prototype.open = function() {
+        this.addEventListener("readystatechange", function() {
+            waitForKeyElements("tip2-tour-zug-block-row-template", addGap);
+        });
+        open.apply(this, arguments);
+    };
+})(XMLHttpRequest.prototype.open);
+
 (function() {
     'use strict';
     waitForKeyElements("tip2-tour-zug-block-row-template", addGap);
