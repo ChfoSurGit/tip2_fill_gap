@@ -5,4 +5,4 @@ Ce User Script comble ces erreurs et permet de lire les heures séquentiellement
 
 ## To-Do
 - [ ] Afficher le texte selon la langue ;
-- [ ] Systématiquement injecter l'User Script;
+- [x] Systématiquement injecter l'User Script;
