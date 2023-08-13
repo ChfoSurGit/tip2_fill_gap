@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TIP2 Fill the gap
 // @namespace    tip2_fill_gap
-// @version      0.1
+// @version      0.2
 // @description  Fill the gap if horary doesn't follow
 // @author       pherjung
 // @match        https://tip2.sbb.ch/*
@@ -81,6 +81,7 @@ function addGap() {
         // Check if it's less because planification does some shit
         if (hour1.getTime() < hour2.getTime()) {
             var copy = node.cloneNode(true);
+            copy.setAttribute('class', 'ng-star-inserted');
             var bullet = copy.getElementsByClassName('point bullet-filled ng-star-inserted');
             var line = copy.getElementsByClassName('line-bottom line-solid');
             bullet[0].remove();
