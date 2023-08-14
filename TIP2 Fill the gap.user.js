@@ -27,17 +27,17 @@
 })();
 
 function addGap() {
-    var lang = document.querySelector('tip2-go-back').innerText;
+    var lang = document.querySelectorAll('nav > a')[1].innerText;
     var text;
     // Doesn't work if the language is changed without any refresh
     switch (lang) {
-        case "Zurück zum Briefing":
+        case "Tourensuche":
             text = "Leerzeit";
             break;
-        case "Retour au briefing":
+        case "Recherche du tour":
             text = "Temps libre";
             break;
-        case "Tornare al briefing":
+        case "Ricerca turno":
             text = "Tempo di inattività";
             break;
     }
