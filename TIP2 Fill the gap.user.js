@@ -82,6 +82,8 @@ function addGap() {
         if (hour1.getTime() < hour2.getTime()) {
             var copy = node.cloneNode(true);
             copy.setAttribute('class', 'ng-star-inserted');
+            var div = copy.querySelector('div');
+            div.setAttribute('class', 'flex flex-col');
             var bullet = copy.getElementsByClassName('point bullet-filled ng-star-inserted');
             var line = copy.getElementsByClassName('line-bottom line-solid');
             bullet[0].remove();
