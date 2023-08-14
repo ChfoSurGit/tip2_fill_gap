@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TIP2 Fill the gap
 // @namespace    tip2_fill_gap
-// @version      0.2.1
+// @version      0.2.3
 // @description  Fill the gap if horary doesn't follow
 // @author       pherjung
 // @match        https://tip2.sbb.ch/*
@@ -27,22 +27,23 @@
 })();
 
 function addGap() {
-    var lang = document.querySelectorAll('nav > a')[1].innerText;
+    var lang = document.querySelector('tip2-go-back').innerText;
+    lang = lang.split(' ')[0]
     var text;
     // Doesn't work if the language is changed without any refresh
     switch (lang) {
-        case "Tourensuche":
+        case "Zurück":
             text = "Leerzeit";
             break;
-        case "Recherche du tour":
+        case "Retour":
             text = "Temps libre";
             break;
-        case "Ricerca turno":
+        case "Tornare":
             text = "Tempo di inattività";
             break;
     }
     var hours = document.getElementsByClassName('tip2-font-bold p-0');
-    var start_hour_txt = hours[0].innerText;
+    var start_hour_txt = hours[0].innerText.replaceAll(' ', '');
     var start_hour = new Date('2023-01-01 '+start_hour_txt);
     var durations = document.getElementsByClassName('zug-block-time-duration');
     var node = hours[0].closest('tip2-tour-zug-block').closest('div');
@@ -52,6 +53,7 @@ function addGap() {
         }
 
         var time_raw = durations[a].innerText.replace("'", "");
+        time_raw = time_raw.replaceAll(' ', '');
         var time = time_raw.split('h ');
         var duration
         if (time.length > 1) {
@@ -60,8 +62,8 @@ function addGap() {
             duration = time[0]*60000;
         }
 
-        var hour2_txt = hours[a+1].innerText;
-        var hour1_txt = hours[a].innerText;
+        var hour2_txt = hours[a+1].innerText.replaceAll(' ', '');
+        var hour1_txt = hours[a].innerText.replaceAll(' ', '');
         var hour2 = new Date('2023-01-01 '+hour2_txt);
         var hour1 = new Date('2023-01-01 '+hour1_txt);
         var diff = hour2-hour1;
