@@ -83,6 +83,11 @@ function addGap() {
         // Check if it's less because planification does some shit
         if (hour1.getTime() < hour2.getTime()) {
             var copy = node.cloneNode(true);
+            // Need to remove time duration by foot if present
+            var block = copy.getElementsByTagName('tip2-tour-zug-block-leistung');
+            if (block.length > 1) {
+                block[1].remove();
+            }
             copy.setAttribute('class', 'ng-star-inserted');
             var div = copy.querySelector('div');
             div.setAttribute('class', 'flex flex-col');
