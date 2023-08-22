@@ -88,6 +88,7 @@ function addGap() {
             if (block.length > 1) {
                 block[1].remove();
             }
+            // Always set the right classes
             copy.setAttribute('class', 'ng-star-inserted');
             var div = copy.querySelector('div');
             div.setAttribute('class', 'flex flex-col');
