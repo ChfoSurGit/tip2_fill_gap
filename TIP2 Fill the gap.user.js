@@ -89,8 +89,11 @@ function addGap() {
             var copy = node.cloneNode(true);
             // Need to remove time duration by foot if present
             var block = copy.getElementsByTagName('tip2-tour-zug-block-leistung');
-            if (block.length > 1) {
-                block[1].remove();
+            let i = 1;
+            console.log('length is:', block.length);
+            while (i < block.length) {
+                console.log(i, block.length);
+                block[i].remove();
             }
             // Always set the right classes
             copy.setAttribute('class', 'ng-star-inserted');
