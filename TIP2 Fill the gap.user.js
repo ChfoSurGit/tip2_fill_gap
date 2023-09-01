@@ -66,7 +66,11 @@ function addGap() {
         var hour1_txt = hours[a].innerText.replaceAll(' ', '');
         var hour2 = new Date('2023-01-01 '+hour2_txt);
         var hour1 = new Date('2023-01-01 '+hour1_txt);
+        // Sometimes next work has the same hour as the previous
         var diff = hour2-hour1;
+        if (diff === 0) {
+            continue;
+        }
         // If it's a negative value, it means that hours2 is the next day
         if (diff < 0) {
             hour2.setDate(2);
