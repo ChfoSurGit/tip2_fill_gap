@@ -99,6 +99,7 @@ function addGap() {
             copy.setAttribute('class', 'ng-star-inserted');
             var div = copy.querySelector('div');
             div.setAttribute('class', 'flex flex-col');
+            copy.querySelector('.tip2-main-container-padding-no-h1').setAttribute('class', 'tip2-main-container-padding-no-h1 tip2-font-small');
             var bullet = copy.getElementsByClassName('point bullet-filled ng-star-inserted');
             var line = copy.getElementsByClassName('line-bottom line-solid');
             bullet[0].remove();
