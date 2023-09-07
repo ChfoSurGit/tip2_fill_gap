@@ -87,10 +87,11 @@ function addGap() {
         // Check if it's less because planification does some shit
         if (hour1.getTime() < hour2.getTime()) {
             var copy = node.cloneNode(true);
+            // Always remove this div, as sometimes copy isn't the expected one
+            copy.querySelector('div > div').remove();
             // Need to remove time duration by foot if present
             var block = copy.getElementsByTagName('tip2-tour-zug-block-leistung');
             let i = 1;
-            console.log('length is:', block.length);
             while (i < block.length) {
                 console.log(i, block.length);
                 block[i].remove();
