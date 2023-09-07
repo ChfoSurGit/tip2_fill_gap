@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         TIP2 Fill the gap
 // @namespace    tip2_fill_gap
-// @version      0.3
+// @version      0.3.1
 // @description  Fill the gap if horary doesn't follow
 // @author       pherjung
 // @match        https://tip2.sbb.ch/*
