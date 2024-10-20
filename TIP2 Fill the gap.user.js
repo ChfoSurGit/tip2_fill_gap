@@ -10,6 +10,8 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=sbb.ch
 // @copyright    GPL V3.0
 // @grant        GM_addStyle
+// @updateURL    https://github.com/pherjung/tip2_fill_gap/raw/refs/heads/main/TIP2%20Fill%20the%20gap.user.js
+// @downloadURL  https://github.com/pherjung/tip2_fill_gap/raw/refs/heads/main/TIP2%20Fill%20the%20gap.user.js
 // ==/UserScript==
 
 (function(open) {
