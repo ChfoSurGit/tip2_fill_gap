@@ -46,7 +46,23 @@ function addGap() {
     var start_hour_txt = hours[0].innerText.replaceAll(' ', '');
     var start_hour = new Date('2023-01-01 '+start_hour_txt);
     var durations = document.getElementsByClassName('zug-block-time-duration');
-    var node = hours[0].closest('tip2-tour-zug-block').closest('div');
+    // Copy a standard element to reuse it
+    var node = hours[0].closest('tip2-tour-zug-block');
+    var skeleton = node.cloneNode(true);
+    // Prepare skeleton that will be reuse to insert my elements
+    var skeleton_leistung = skeleton.getElementsByTagName('tip2-tour-zug-block-leistung');
+    // keep only one element tip2-tour-zug-block-leistung
+    while (1 < skeleton_leistung.length) {
+        skeleton_leistung[1].remove();
+    }
+    var bullet = skeleton.getElementsByClassName('point bullet-filled ng-star-inserted');
+    bullet[0].remove();
+    var line = skeleton.getElementsByClassName('line-bottom line-solid');
+    line[0].remove();
+    var depot = skeleton.getElementsByClassName('lg:w-1/4');
+    // remove depot name
+    depot[0].remove();
+
     for (let a=0; a < hours.length; a++) {
         if (a+1 == hours.length) {
             break;
@@ -76,36 +92,16 @@ function addGap() {
             hour2.setDate(2);
             diff = hour2-hour1;
         }
-
         if (hour1 < start_hour) {
             hour1.setDate(2);
             hour2.setDate(2);
         }
 
         hour1.setTime(hour1.getTime() + duration);
-        // Insert a new element
         // Check if it's less because planification does some shit
         if (hour1.getTime() < hour2.getTime()) {
-            var copy = node.cloneNode(true);
-            // Always remove this div, as sometimes copy isn't the expected one
-            copy.querySelector('div > div').remove();
-            // Need to remove time duration by foot if present
-            var block = copy.getElementsByTagName('tip2-tour-zug-block-leistung');
-            let i = 1;
-            while (i < block.length) {
-                console.log(i, block.length);
-                block[i].remove();
-            }
-            // Always set the right classes
-            copy.setAttribute('class', 'ng-star-inserted');
-            var div = copy.querySelector('div');
-            div.setAttribute('class', 'flex flex-col');
-            copy.querySelector('.tip2-main-container-padding-no-h1').setAttribute('class', 'tip2-main-container-padding-no-h1 tip2-font-small');
-            var bullet = copy.getElementsByClassName('point bullet-filled ng-star-inserted');
-            var line = copy.getElementsByClassName('line-bottom line-solid');
-            bullet[0].remove();
-            line[0].remove();
-            var dur_remove = copy.getElementsByClassName('zug-block-time-duration');
+            // Insert a new element
+            var copy = skeleton.cloneNode(true);
             var spans = copy.getElementsByTagName('span');
             var hour = String(hour1.getHours()).padStart(2, '0');
             var minutes = String(hour1.getMinutes()).padStart(2, '0');
@@ -113,12 +109,7 @@ function addGap() {
             var new_time = (hour2-hour1)/60000;
             spans[1].innerText = new_time+"'";
             spans[2].innerText = text;
-            // remove (LF);
-            spans[3].remove();
             var pos = hours[a].closest('tip2-tour-zug-block-leistung');
-            var depot = copy.getElementsByClassName('lg:w-1/4');
-            // remove depot name
-            depot[0].remove();
             pos.after(copy);
             a++;
         }
