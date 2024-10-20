@@ -72,6 +72,7 @@ function addGap() {
         time_raw = time_raw.replaceAll(' ', '');
         var time = time_raw.split('h ');
         var duration
+        // If more than 1, it means it's > 60'
         if (time.length > 1) {
             duration = time[0]*3600000+time[1]*60000;
         } else {
@@ -83,6 +84,7 @@ function addGap() {
         var hour2 = new Date('2023-01-01 '+hour2_txt);
         var hour1 = new Date('2023-01-01 '+hour1_txt);
         // Sometimes next work has the same hour as the previous
+        // Time is in milliseconds
         var diff = hour2-hour1;
         if (diff === 0) {
             continue;
