@@ -97,16 +97,17 @@ function addGap() {
             hour2.setDate(2);
         }
 
-        hour1.setTime(hour1.getTime() + duration);
+        var expected_hour1 = hour1;
+        expected_hour1.setTime(expected_hour1.getTime() + duration);
         // Check if it's less because planification does some shit
-        if (hour1.getTime() < hour2.getTime()) {
+        if (expected_hour1.getTime() < hour2.getTime()) {
             // Insert a new element
             var copy = skeleton.cloneNode(true);
             var spans = copy.getElementsByTagName('span');
-            var hour = String(hour1.getHours()).padStart(2, '0');
-            var minutes = String(hour1.getMinutes()).padStart(2, '0');
+            var hour = String(expected_hour1.getHours()).padStart(2, '0');
+            var minutes = String(expected_hour1.getMinutes()).padStart(2, '0');
             spans[0].innerText = hour+':'+minutes;
-            var new_time = (hour2-hour1)/60000;
+            var new_time = (hour2-expected_hour1)/60000;
             spans[1].innerText = new_time+"'";
             spans[2].innerText = text;
             var pos = hours[a].closest('tip2-tour-zug-block-leistung');
