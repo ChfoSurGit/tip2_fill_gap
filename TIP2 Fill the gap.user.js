@@ -110,7 +110,7 @@ function addGap() {
             var new_time = (hour2-expected_hour1)/60000;
             spans[1].innerText = new_time+"'";
             spans[2].innerText = text;
-            var pos = hours[a].closest('tip2-tour-zug-block-leistung');
+            var pos = hours[a].closest('tip2-tour-zug-block');
             pos.after(copy);
             a++;
         }
