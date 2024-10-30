@@ -13,6 +13,7 @@
 // @downloadURL  https://github.com/pherjung/tip2_fill_gap/raw/refs/heads/main/TIP2%20Fill%20the%20gap.user.js
 // ==/UserScript==
 
+// Run script again if the page is reloaded
 (function(open) {
     XMLHttpRequest.prototype.open = function() {
         this.addEventListener("readystatechange", function() {
@@ -105,7 +106,9 @@ function addGap() {
             var minutes = String(expected_hour1.getMinutes()).padStart(2, '0');
             spans[0].innerText = hour+':'+minutes;
             var new_time = (hour2-expected_hour1)/60000;
+            // Insert duration
             spans[1].innerText = new_time+"'";
+            // Insert hour
             spans[2].innerText = text;
             // Remove (LF)
             spans[3].innerText = '';
