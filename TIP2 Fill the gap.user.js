@@ -5,7 +5,6 @@
 // @description  Fill the gap if horary doesn't follow
 // @author       pherjung
 // @match        https://tip2.sbb.ch/*
-// @require      https://cdn.jsdelivr.net/gh/CoeJoder/waitForKeyElements.js@v1.2/waitForKeyElements.js
 // @run-at       document-end
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=sbb.ch
 // @copyright    GPL V3.0
@@ -22,11 +21,6 @@
         open.apply(this, arguments);
     };
 })(XMLHttpRequest.prototype.open);
-
-(function() {
-    'use strict';
-    waitForKeyElements("tip2-tour-zug-block-row-template", addGap);
-})();
 
 function addGap() {
     var lang = document.querySelector('tip2-go-back').innerText;
@@ -120,3 +114,19 @@ function addGap() {
         }
     }
 }
+
+// Wait until all page is loaded and exec the usescript
+(function() {
+    'use strict';
+    const isElementLoaded = async selector => {
+        while ( document.querySelector(selector) === null) {
+            await new Promise( resolve =>  requestAnimationFrame(resolve) )
+        }
+        return document.querySelector(selector);
+    };
+
+    // I'm checking for a specific class .file-item and then running code. You can also check for an id or an element.
+    isElementLoaded('tip2-tour-zug-block-row-template').then((selector) => {
+        addGap();
+    });
+})();
