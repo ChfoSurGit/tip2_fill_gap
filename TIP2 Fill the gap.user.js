@@ -59,7 +59,7 @@ function addGap() {
     depot[0].remove();
 
     for (let a=0; a < hours.length; a++) {
-        if (a+1 == hours.length) {
+        if (a+1 === hours.length) {
             break;
         }
 
