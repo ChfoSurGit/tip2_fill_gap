@@ -43,13 +43,12 @@ function addGap() {
     var start_hour = new Date('2023-01-01 '+start_hour_txt);
     var durations = document.getElementsByClassName('zug-block-time-duration');
     // Copy a standard element to reuse it
-    var node = hours[0].closest('tip2-tour-zug-block');
+    var node = hours[0].closest('tip2-tour-zug-block-leistung');
     var skeleton = node.cloneNode(true);
     // Prepare skeleton that will be reuse to insert my elements
-    var skeleton_leistung = skeleton.getElementsByTagName('tip2-tour-zug-block-leistung');
     // keep only one element tip2-tour-zug-block-leistung
-    while (1 < skeleton_leistung.length) {
-        skeleton_leistung[1].remove();
+    while (1 < skeleton.length) {
+        skeleton[1].remove();
     }
     var bullet = skeleton.getElementsByClassName('point bullet-filled ng-star-inserted');
     bullet[0].remove();
